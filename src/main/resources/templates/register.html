@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .registration-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 20px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p.error {
+            color: red;
+        }
+        p.success {
+            color: green;
+        }
+        .button-container {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .button-container a:first-child {
+            margin-left: 0;
+        }
+        .button-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="registration-container">
+    <h2>User Registration</h2>
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required/>
+        <p th:if="${usernameError}" class="error" th:text="${usernameError}"></p>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:field="*{password}" required/>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required/>
+        <p th:if="${emailError}" class="error" th:text="${emailError}"></p>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p th:if="${param.success}" class="success">Registration successful!</p>
+</div>
+
+<div class="button-container">
+    <a href="/makaleler">HOME PAGE</a>
+</div>
+
+</body>
+</html>

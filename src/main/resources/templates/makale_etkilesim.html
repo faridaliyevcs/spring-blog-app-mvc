@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Makale Görüntüle</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Article styles */
+        article {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        p {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* Form styles */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        form > * {
+            margin-bottom: 10px;
+        }
+
+        /* Comment styles */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        strong {
+            color: #333333;
+        }
+
+        /* Additional styles for old comments */
+        h2 {
+            margin-top: 20px;
+            color: #333333;
+        }
+
+    </style>
+</head>
+<body>
+<h1 th:text="${makale.baslik}">Makale Başlığı</h1>
+<p th:text="${makale.icerik}">Makale İçeriği Burada Yer Alır.</p>
+<p>Beğeni Sayısı: <span th:text="${makale.begeniSayisi}"></span></p>
+
+
+<form action="/add-comment" method="post">
+    <input type="hidden" name="makale_id" th:value="${makale.id}">
+    <label for="comment">Yorum Ekle:</label><br>
+    <input type="text" id="comment" name="comment" required><br>
+    <input type="submit" value="Yorumu Ekle">
+</form>
+
+<form action="/like" method="post">
+    <input type="hidden" name="makale_id" th:value="${makale.id}">
+    <input type="hidden" name="begeni" value="1">
+    <input type="submit" value="Beğen">
+</form>
+<h2>Eski yorumlar:</h2>
+<ul>
+    <li th:each="yorum : ${makale.yorumlar}">
+        <p><strong th:text="${yorum.user.username}"></strong>: <span th:text="${yorum.icerik}"></span></p>
+    </li>
+</ul>
+<div class="button-container">
+    <a href="/makaleler" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 0 10px; transition: background-color 0.3s ease-in-out;">
+        ANA SAYFA
+    </a>
+</div>
+
+</body>
+</html>

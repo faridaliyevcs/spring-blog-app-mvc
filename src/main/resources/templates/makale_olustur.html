@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Makale Oluştur</title>
+  <link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+<h1>Makale Oluştur</h1>
+<form action="/makale" method="post">
+  <label for="baslik">Makale Başlığı:</label><br>
+  <input type="text" id="baslik" name="baslik" required><br><br>
+  <label for="icerik">Makale İçeriği:</label><br>
+  <textarea id="icerik" name="icerik" rows="4" cols="50" required></textarea><br><br>
+  <label>Makale tipini seçiniz:</label>
+  <br>
+  <label>
+    <input type="radio" name="category" value="bilim"> Bilim
+  </label><br>
+  <label>
+    <input type="radio" name="category" value="tarih"> Tarih
+  </label><br>
+  <label>
+    <input type="radio" name="category" value="spor"> Spor
+  </label><br>
+  <label>
+    <input type="radio" name="category" value="gündelik yaşam"> Gündelik Yaşam
+  </label><br>
+  <label>
+    <input type="radio" name="category" value="siyaset"> Siyaset
+  </label><br>
+  <label>
+    <input type="radio" name="category" value="sanat"> Sanat
+  </label><br>
+  <input type="submit" value="Makaleyi Oluştur">
+</form>
+<br>
+<div class="button-container">
+  <a href="/makaleler" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 0 10px; transition: background-color 0.3s ease-in-out;">
+    ANA SAYFA
+  </a>
+</div>
+
+</body>
+</html>
