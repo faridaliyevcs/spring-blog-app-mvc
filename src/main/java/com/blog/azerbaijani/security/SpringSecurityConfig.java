@@ -22,7 +22,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth
-                    .userDetailsService(userDetailsService)//
+                    .userDetailsService(userDetailsService)
                     .passwordEncoder(NoOpPasswordEncoder.getInstance());
         }
 
@@ -31,13 +31,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             http
                     .authorizeRequests().antMatchers("/login").permitAll()
                     .and()
-                    .authorizeRequests().antMatchers("/makaleler").permitAll()
+                    .authorizeRequests().antMatchers("/documents").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/register").permitAll()
                     .and()
-                    .authorizeRequests().antMatchers("/makale").hasAnyAuthority("USER")
+                    .authorizeRequests().antMatchers("/document").hasAnyAuthority("USER")
                     .and()
-                    .authorizeRequests().antMatchers("/makale-goster/**").permitAll()
+                    .authorizeRequests().antMatchers("/show-document/**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/add-comment").hasAnyAuthority("USER")
                     .and()
@@ -46,7 +46,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .csrf().disable()
                     .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/makaleler")
+                    .defaultSuccessUrl("/documents")
                     .and()
                     .logout()
                     .logoutUrl("/logout")

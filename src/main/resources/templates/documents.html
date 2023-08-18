@@ -94,7 +94,7 @@
     <a href="/register" class="button">Register</a>
     <a href="/logout" class="button">Log out</a>
     <th:block th:if="${#request.isUserInRole('USER')}">
-      <a href="/makale" class="button">Write</a>
+      <a href="/document" class="button">Write</a>
     </th:block>
   </div>
 
@@ -103,23 +103,24 @@
       <label for="category">Select a category:</label>
       <select id="category" name="category">
         <option value="">All Categories</option>
-        <option value="bilim">Bilim</option>
-        <option value="tarih">Tarih</option>
-        <option value="spor">Spor</option>
-        <option value="gündelik yaşam">Gündelik Yaşam</option>
-        <option value="siyaset">Siyaset</option>
-        <option value="sanat">Sanat</option>
+        <option value="science">Science</option>
+        <option value="history">History</option>
+        <option value="sport">Sport</option>
+        <option value="daily life">Daily Life</option>
+        <option value="politics">Politics</option>
+        <option value="art">Art</option>
+        <option value="technology">Technology</option>
       </select>
       <button type="submit">Search</button>
     </form>
   </div>
 
-  <h1>Son makaleler</h1>
+  <h1>Last Documents</h1>
 
   <ul>
-    <li th:each="makale : ${makaleList}">
-      <a th:href="@{/makale-goster/{id}(id=${makale.id})}">
-        <h2 th:text="${makale.baslik}">Makale Başlığı</h2>
+    <li th:each="document : ${documentList}">
+      <a th:href="@{/show-document/{id}(id=${document.id})}">
+        <h2 th:text="${document.header}">Document Header</h2>
       </a>
     </li>
   </ul>

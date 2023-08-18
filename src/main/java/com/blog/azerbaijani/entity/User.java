@@ -1,13 +1,10 @@
 package com.blog.azerbaijani.entity;
 
-import ch.qos.logback.classic.spi.ILoggingEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.aop.target.LazyInitTargetSource;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,10 +27,10 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    private List<Makale> makaleler;
+    private List<Document> documents;
 
     @OneToMany(mappedBy = "user")
-    private List<Yorum> yorumlar;
+    private List<Comment> comments;
 
     @OneToMany(mappedBy = "user")
     private List<Like> likes;

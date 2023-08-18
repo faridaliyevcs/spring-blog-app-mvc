@@ -18,8 +18,8 @@ public class Like {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "makale")
-    private Makale makale;
+    @JoinColumn(name = "document")
+    private Document document;
 
     @ManyToOne
     @JoinColumn(name = "user")

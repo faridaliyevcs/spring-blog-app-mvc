@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Makale Görüntüle</title>
+    <title>Read Document</title>
     <style>
-        /* Global styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -11,7 +10,6 @@
             padding: 0;
         }
 
-        /* Article styles */
         article {
             max-width: 800px;
             margin: 20px auto;
@@ -30,7 +28,6 @@
             line-height: 1.6;
         }
 
-        /* Form styles */
         form {
             margin-top: 20px;
         }
@@ -66,7 +63,6 @@
             margin-bottom: 10px;
         }
 
-        /* Comment styles */
         ul {
             list-style-type: none;
             padding: 0;
@@ -82,7 +78,6 @@
             color: #333333;
         }
 
-        /* Additional styles for old comments */
         h2 {
             margin-top: 20px;
             color: #333333;
@@ -91,34 +86,38 @@
     </style>
 </head>
 <body>
-<h1 th:text="${makale.baslik}">Makale Başlığı</h1>
-<p th:text="${makale.icerik}">Makale İçeriği Burada Yer Alır.</p>
-<p>Beğeni Sayısı: <span th:text="${makale.begeniSayisi}"></span></p>
-
+<h1 th:text="${document.header}">Document Header</h1>
+<p th:text="${document.content}">Document Content</p>
+<p>Beğeni Sayısı: <span th:text="${document.likeCount}">0</span></p>
 
 <form action="/add-comment" method="post">
-    <input type="hidden" name="makale_id" th:value="${makale.id}">
-    <label for="comment">Yorum Ekle:</label><br>
+    <input type="hidden" name="document_id" th:value="${document.id}">
+    <label for="comment">Add Comment:</label><br>
     <input type="text" id="comment" name="comment" required><br>
-    <input type="submit" value="Yorumu Ekle">
+    <input type="submit" value="Add Comment">
 </form>
 
 <form action="/like" method="post">
-    <input type="hidden" name="makale_id" th:value="${makale.id}">
-    <input type="hidden" name="begeni" value="1">
-    <input type="submit" value="Beğen">
+    <input type="hidden" name="document_id" th:value="${document.id}">
+    <input type="hidden" name="like" value="1">
+    <input type="submit" value="Like">
 </form>
-<h2>Eski yorumlar:</h2>
+
+<h2>Past comments:</h2>
 <ul>
-    <li th:each="yorum : ${makale.yorumlar}">
-        <p><strong th:text="${yorum.user.username}"></strong>: <span th:text="${yorum.icerik}"></span></p>
+    <li th:each="comment : ${document.comments}">
+        <p><strong th:text="${comment.user.username}"></strong>: <span th:text="${comment.content}"></span></p>
     </li>
 </ul>
+
 <div class="button-container">
-    <a href="/makaleler" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 0 10px; transition: background-color 0.3s ease-in-out;">
+    <a href="/documents" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 0 10px; transition: background-color 0.3s ease-in-out;">
         ANA SAYFA
     </a>
 </div>
 
 </body>
 </html>
+
+
+

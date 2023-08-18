@@ -10,18 +10,18 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Yorum {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column
-    private String icerik;
+    private String content;
 
     @ManyToOne
-    @JoinColumn(name = "makale_id")
-    private Makale makale;
+    @JoinColumn(name = "document_id")
+    private Document document;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

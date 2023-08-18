@@ -76,16 +76,16 @@
 <div class="results-container">
   <h1>Search Results</h1>
   <ul>
-    <li th:each="makale : ${makaleler}">
-      <a th:href="@{/makale-goster/{id}(id=${makale.id})}">
-        <h2 th:text="${makale.baslik}">Makale Başlığı</h2>
+    <li th:each="document : ${documents}">
+      <a th:href="@{/show-document/{id}(id=${document.id})}">
+        <h2 th:text="${document.header}">Document Header</h2>
       </a>
     </li>
   </ul>
 </div>
 
 <div class="button-container">
-  <a href="/makaleler">HOME PAGE</a>
+  <a href="/documents">HOME PAGE</a>
 </div>
 
 </body>

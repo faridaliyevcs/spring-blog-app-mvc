@@ -3,7 +3,6 @@ package com.blog.azerbaijani.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,28 +11,28 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Makale {
+public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column
-    private String baslik;
+    private String header;
 
     @Column
-    private String icerik;
+    private String content;
 
-    @Column(name = "makale_tipi")
-    private String makaleTipi;
+    @Column(name = "document_type")
+    private String documentType;
 
-    @OneToMany(mappedBy = "makale")
-    private List<Yorum> yorumlar;
+    @OneToMany(mappedBy = "document")
+    private List<Comment> comments;
 
-    @Column(name = "begeni_sayisi")
-    private Integer begeniSayisi;
+    @Column(name = "like_count")
+    private Integer likeCount;
 
-    @OneToMany(mappedBy = "makale")
+    @OneToMany(mappedBy = "document")
     private List<Like> likes;
 
     @ManyToOne
