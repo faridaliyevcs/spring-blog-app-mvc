@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User Registration</title>
+    <title>Teacher Registration</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,8 +81,14 @@
 </head>
 <body>
 <div class="registration-container">
-    <h2>User Registration</h2>
-    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <h2>Teacher Registration</h2>
+    <form action="#" th:action="@{/registerTeacher}" th:object="${teacher}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required/>
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" th:field="*{surname}" required/>
+
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:field="*{username}" required/>
         <p th:if="${usernameError}" class="error" th:text="${usernameError}"></p>
@@ -92,6 +98,15 @@
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" th:field="*{email}" required/>
+
+        <label for="subject">Select Your Subject:</label>
+        <select id="subject" name="subject" th:field="*{subject}">
+            <option value="Biology">Biology</option>
+            <option value="History">History</option>
+            <option value="Physics">Physics</option>
+            <option value="Mathematics">Mathematics</option>
+        </select>
+
         <p th:if="${emailError}" class="error" th:text="${emailError}"></p>
 
         <button type="submit">Register</button>

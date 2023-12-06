@@ -9,10 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = "com.blog.azerbaijani.entity")
 @EnableJpaRepositories(basePackages = "com.blog.azerbaijani.repository")
 public class MyBlogApplication {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(MyBlogApplication.class, args);
 	}
-
 }
