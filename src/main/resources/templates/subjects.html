@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Subjects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        td a {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+        }
+
+        td a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Your Subjects</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="subject : ${subjects}">
+        <td th:text="${subject.id}"></td>
+        <td th:text="${subject.name}"></td>
+        <td>
+            <a th:if="${subject.id != null}" th:href="@{/subjects/{id}(id=${subject.id})}">View Topics</a>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>BIOLOGY</td>
+        <td><a>View Topics</a></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>HISTORY</td>
+        <td><a>View Topics</a></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>MATH</td>
+        <td><a>View Topics</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

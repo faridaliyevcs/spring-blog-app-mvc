@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      margin: 20px auto;
+      width: 80%;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    button {
+      display: block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Answer the Questions</h1>
+
+<form th:action="@{/subjects/{id}/{topic_id}}" th:method="post" th:modelAttribute="answerList">
+  <table border="1">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Question</th>
+      <th>Answer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question, questionIndex : ${questions}">
+      <td th:text="${question.id}"></td>
+      <td th:text="${question.content}"></td>
+      <td>
+        <div th:each="answer : ${question.answerList}">
+          <label th:for="${'answer-' + questionIndex.index + '-' + answer.id}">
+            <input type="radio" th:id="${'answer-' + questionIndex.index + '-' + answer.id}" th:field="*{answerList[__${questionIndex.index}__].bool}" th:value="${answer.bool}"/>
+            <span th:text="${answer.content}"></span>
+          </label>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button type="submit">Submit Answers</button>
+</form>
+
+</body>
+</html>
